@@ -1,7 +1,6 @@
 'use client'
 
 import { DynamicPlot } from '@/components/DynamicPlot'
-import Link from 'next/link'
 
 export default function Home() {
   const data = [{

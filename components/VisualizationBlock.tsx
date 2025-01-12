@@ -1,6 +1,10 @@
 import { PieChart } from 'lucide-react'
 
-export default function VisualizationBlock({ data }: { data: any }) {
+interface VisualizationData {
+  [key: string]: unknown
+}
+
+export default function VisualizationBlock({ data }: { data: VisualizationData }) {
   return (
     <div className="bg-[#2d2d2d] p-4 rounded-lg my-4">
       <h3 className="text-lg font-semibold text-[#4ec9b0] flex items-center">
@@ -11,4 +15,3 @@ export default function VisualizationBlock({ data }: { data: any }) {
     </div>
   )
 }
-

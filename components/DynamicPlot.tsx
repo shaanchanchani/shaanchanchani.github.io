@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Layout } from 'plotly.js'
+import { Layout, Data } from 'plotly.js'
 
 // Import Plotly with no SSR
 const Plot = dynamic(() => import('react-plotly.js'), {
@@ -8,7 +8,7 @@ const Plot = dynamic(() => import('react-plotly.js'), {
 })
 
 interface PlotProps {
-  data: Array<any>
+  data: Array<Partial<Data>>
   layout?: Partial<Layout>
 }
 
