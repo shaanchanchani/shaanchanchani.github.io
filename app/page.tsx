@@ -55,7 +55,7 @@ export default function Home() {
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold">Purdue University</h3>
-                <p className="text-gray-400">Bachelor's degree, Computer Engineering</p>
+                <p className="text-gray-400">Bachelor&apos;s degree, Computer Engineering</p>
                 <p className="text-gray-400">Aug 2021 - May 2025</p>
                 <p className="text-gray-400">West Lafayette, Indiana</p>
               </div>
@@ -67,17 +67,17 @@ export default function Home() {
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold">Machine Learning Engineer</h3>
-                <p className="text-gray-400">Huddlevision • Aug 2024 - Present</p>
+                <p className="text-gray-400">Huddlevision &bull; Aug 2024 - Present</p>
               </div>
               
               <div>
                 <h3 className="font-semibold">Engineering Intern</h3>
-                <p className="text-gray-400">John Deere • Apr 2024 - Aug 2024</p>
+                <p className="text-gray-400">John Deere &bull; Apr 2024 - Aug 2024</p>
               </div>
               
               <div>
                 <h3 className="font-semibold">Undergraduate Researcher</h3>
-                <p className="text-gray-400">Purdue University • Aug 2023 - Jan 2024</p>
+                <p className="text-gray-400">Purdue University &bull; Aug 2023 - Jan 2024</p>
               </div>
             </div>
           </div>
