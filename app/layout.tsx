@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Fira_Code } from 'next/font/google'
+import { ThemeProvider } from '@/components/theme-provider'
 
 const firaCode = Fira_Code({ subsets: ['latin'] })
 
@@ -15,9 +16,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${firaCode.className} bg-[#1e1e1e] text-white min-h-screen`}>
-        {children}
+    <html lang="en">
+      <body className={firaCode.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <div className="bg-background text-foreground min-h-screen">
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
