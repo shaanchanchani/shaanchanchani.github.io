@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 const firaCode = Fira_Code({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'My VS Code-Inspired Site',
+  title: 'shaan c',
   description: 'Welcome to my personal site with a VS Code-inspired design',
 }
 

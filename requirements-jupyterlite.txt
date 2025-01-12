@@ -1,0 +1,6 @@
+jupyterlite-core==0.2.3
+jupyterlab~=4.0.11
+plotly==2.35.3
+pandas>=2.0.0
+polars>=0.20.5
+numpy>=1.24.0
