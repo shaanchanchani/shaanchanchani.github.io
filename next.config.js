@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  basePath: '/personal-site',
   images: {
     unoptimized: true,
   },
-  basePath: '/personal-site',
   webpack: (config) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
