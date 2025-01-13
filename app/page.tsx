@@ -93,7 +93,19 @@ export default function Home() {
             <div className="space-y-4">
               <Link href="/projects/ngs-visualizer" className="block p-6 rounded-lg border border-[#00151e]/20 hover:border-[#00151e] transition-colors">
                 <h3 className="text-lg font-medium text-[#00151e] mb-2">NGS Play Visualizer</h3>
-                <p className="text-[#00151e]/70 mb-4">Interactive 2D visualizer for NGS player tracking data</p>
+                <p className="text-[#00151e]/70 mb-2">Interactive 2D visualizer for NGS player tracking data</p>
+                <div className="relative w-full h-[250px] overflow-hidden mb-4">
+                  <div className="absolute w-[200%] h-[200%] origin-top-left scale-[0.5] transform-gpu">
+                    <iframe 
+                      src="/chargers_texans.html" 
+                      width="100%" 
+                      height="100%" 
+                      scrolling="no"
+                      className="border-0"
+                    />
+                  </div>
+                </div>
+                <p className="text-sm text-[#00151e]/50 mb-2">Jan 6, 2025</p>
                 <span className="text-[#00151e]">View Project →</span>
               </Link>
             </div>
@@ -104,9 +116,22 @@ export default function Home() {
             <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Articles</h2>
             <div className="space-y-4">
               <Link href="/articles/camo" className="block p-6 rounded-lg border border-[#00151e]/20 hover:border-[#00151e] transition-colors">
-                <h3 className="text-lg font-medium text-[#00151e] mb-2">CAMO: The Art of Pre-Snap Disguise</h3>
-                <p className="text-[#00151e]/70 mb-4">NFL Big Data Bowl 2025 Submission</p>
-                <span className="text-[#00151e]">Read more →</span>
+                <div className="flex gap-4">
+                  <div className="relative w-24 h-24 flex-shrink-0">
+                    <Image
+                      src="/big-data-bowl-transparent.png"
+                      alt="NFL Big Data Bowl"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-[#00151e] mb-2">CAMO: The Art of Pre-Snap Disguise</h3>
+                    <p className="text-[#00151e]/70 mb-2">NFL Big Data Bowl 2025 Submission</p>
+                    <p className="text-sm text-[#00151e]/50 mb-2">Jan 6, 2025</p>
+                    <span className="text-[#00151e]">Read more →</span>
+                  </div>
+                </div>
               </Link>
             </div>
           </div>
