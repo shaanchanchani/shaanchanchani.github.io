@@ -92,8 +92,8 @@ export default function Home() {
             <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Projects</h2>
             <div className="space-y-4">
               <Link href="/projects/ngs-visualizer" className="block p-6 rounded-lg border border-[#00151e]/20 hover:border-[#00151e] transition-colors">
-                <h3 className="text-lg font-medium text-[#00151e] mb-2">NGS Play Visualizer</h3>
-                <p className="text-[#00151e]/70 mb-2">Interactive 2D visualizer for NGS player tracking data</p>
+                <h3 className="text-lg font-medium text-[#00151e] mb-2">Next Gen Stats Play Visualizer</h3>
+                <p className="text-[#00151e]/70 mb-2">Interactive 2D visualizer for Next Gen Stats player tracking data</p>
                 <div className="relative w-full h-[250px] overflow-hidden mb-4">
                   <div className="absolute w-[200%] h-[200%] origin-top-left scale-[0.5] transform-gpu">
                     <iframe 
