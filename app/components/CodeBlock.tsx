@@ -10,7 +10,7 @@ interface Props {
 }
 
 const CodeBlock: React.FC<Props> = ({ code, language = 'python' }) => {
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   
   return (
     <div className={`relative min-h-[40px] ${isExpanded ? 'border border-gray-200 dark:border-gray-700' : ''} rounded-lg`}>
