@@ -5,12 +5,12 @@ import React from 'react'
 import 'katex/dist/katex.min.css'
 import CodeBlock from '@/app/components/CodeBlock'
 import MathFormula from '@/app/components/MathFormula'
-import ResultsTable from '@/app/components/ResultsTable'
+import { renderTable } from '@/app/components/SportsbookPropsArticle/TableRenderer'
 
 export default function SportsbookPropsArticle() {
   return (
     <div className="min-h-screen p-8 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <article className="max-w-6xl space-y-8">
+      <article className="max-w-6xl mx-auto space-y-8">
         <header className="space-y-4">
           <div className="max-w-4xl">
             <h1 className="text-4xl font-bold mb-4">Sportsbook Accuracy on NFL Player Props</h1>
@@ -20,7 +20,7 @@ export default function SportsbookPropsArticle() {
         
         {/* Context */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Context</h2>
+          <h2 className="text-2xl font-semibold">0. Context</h2>
           <div className="prose dark:prose-invert max-w-none">
             <p>
               The following report was submitted as a Jupyter notebook to OddsJam&apos;s 2024 quant challenge. Given a dataset of player prop bets, the challenge was to evaluate which sportsbook in the dataset is the sharpest.
@@ -30,7 +30,7 @@ export default function SportsbookPropsArticle() {
 
         {/* Abstract */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Abstract</h2>
+          <h2 className="text-2xl font-semibold">1. Abstract</h2>
           <div className="prose dark:prose-invert max-w-none">
             <p>
               In this report I analyze a dataset of 12,624 different NFL player prop bets from four major sportsbooks 
@@ -104,61 +104,48 @@ df = df.dropna(subset=sportsbooks, how='any')
 print(f"Remaining Player Props: {df.shape[0]}")
 df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
 
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm overflow-x-auto">
+          {<div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm">
             Remaining Player Props: 15456
-            <div className="mt-4">
-              <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-                <thead>
-                  <tr>
-                    <th className="px-3 py-2 text-left">market</th>
-                    <th className="px-3 py-2 text-left">name</th>
-                    <th className="px-3 py-2 text-right">DraftKings</th>
-                    <th className="px-3 py-2 text-right">ESPN BET</th>
-                    <th className="px-3 py-2 text-right">BetMGM</th>
-                    <th className="px-3 py-2 text-right">Pinnacle</th>
-                    <th className="px-3 py-2 text-left">grade</th>
-                    <th className="px-3 py-2 text-right">desired</th>
-                    <th className="px-3 py-2 text-right">outcome</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-                  <tr>
-                    <td className="px-3 py-2">Player Passing Attempts</td>
-                    <td className="px-3 py-2">Mac Jones Over 33.5</td>
-                    <td className="px-3 py-2 text-right">-115.0</td>
-                    <td className="px-3 py-2 text-right">-120.0</td>
-                    <td className="px-3 py-2 text-right">-120.0</td>
-                    <td className="px-3 py-2 text-right">-121.0</td>
-                    <td className="px-3 py-2">Lost</td>
-                    <td className="px-3 py-2 text-right">33.5</td>
-                    <td className="px-3 py-2 text-right">20.0</td>
-                  </tr>
-                  <tr>
-                    <td className="px-3 py-2">Player Passing Attempts</td>
-                    <td className="px-3 py-2">Mac Jones Under 33.5</td>
-                    <td className="px-3 py-2 text-right">-115.0</td>
-                    <td className="px-3 py-2 text-right">-110.0</td>
-                    <td className="px-3 py-2 text-right">-110.0</td>
-                    <td className="px-3 py-2 text-right">-109.0</td>
-                    <td className="px-3 py-2">Won</td>
-                    <td className="px-3 py-2 text-right">33.5</td>
-                    <td className="px-3 py-2 text-right">20.0</td>
-                  </tr>
-                  <tr>
-                    <td className="px-3 py-2">Player Passing Attempts</td>
-                    <td className="px-3 py-2">Justin Fields Over 27.5</td>
-                    <td className="px-3 py-2 text-right">-115.0</td>
-                    <td className="px-3 py-2 text-right">-150.0</td>
-                    <td className="px-3 py-2 text-right">-115.0</td>
-                    <td className="px-3 py-2 text-right">-133.0</td>
-                    <td className="px-3 py-2">Won</td>
-                    <td className="px-3 py-2 text-right">27.5</td>
-                    <td className="px-3 py-2 text-right">32.0</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          </div>}
+
+          {renderTable(
+            ['market', 'name', 'DraftKings', 'ESPN BET', 'BetMGM', 'Pinnacle', 'grade', 'desired', 'outcome'],
+            [
+              {
+                market: 'Player Passing Attempts',
+                name: 'Mac Jones Over 33.5',
+                DraftKings: '-115.0',
+                'ESPN BET': '-120.0',
+                BetMGM: '-120.0',
+                Pinnacle: '-121.0',
+                grade: 'Lost',
+                desired: '33.5',
+                outcome: '20.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Mac Jones Under 33.5',
+                DraftKings: '-115.0',
+                'ESPN BET': '-110.0',
+                BetMGM: '-110.0',
+                Pinnacle: '-109.0',
+                grade: 'Won',
+                desired: '33.5',
+                outcome: '20.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Over 27.5',
+                DraftKings: '-115.0',
+                'ESPN BET': '-150.0',
+                BetMGM: '-115.0',
+                Pinnacle: '-133.0',
+                grade: 'Won',
+                desired: '27.5',
+                outcome: '32.0'
+              }
+            ]
+          )}
 
           <div className="prose dark:prose-invert max-w-none">
             <p>
@@ -187,58 +174,44 @@ df[sportsbooks] = df[sportsbooks].applymap(american_odds_to_implied_probability)
 df['grade'] = df['grade'].map({'Won': 1, 'Lost': 0})
 df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
 
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
-              <thead>
-                <tr>
-                  <th className="px-3 py-2 text-left">market</th>
-                  <th className="px-3 py-2 text-left">name</th>
-                  <th className="px-3 py-2 text-right">DraftKings</th>
-                  <th className="px-3 py-2 text-right">ESPN BET</th>
-                  <th className="px-3 py-2 text-right">BetMGM</th>
-                  <th className="px-3 py-2 text-right">Pinnacle</th>
-                  <th className="px-3 py-2 text-left">grade</th>
-                  <th className="px-3 py-2 text-right">desired</th>
-                  <th className="px-3 py-2 text-right">outcome</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-                <tr>
-                  <td className="px-3 py-2">Player Passing Attempts</td>
-                  <td className="px-3 py-2">Mac Jones Over 33.5</td>
-                  <td className="px-3 py-2 text-right">0.534884</td>
-                  <td className="px-3 py-2 text-right">0.545455</td>
-                  <td className="px-3 py-2 text-right">0.545455</td>
-                  <td className="px-3 py-2 text-right">0.547511</td>
-                  <td className="px-3 py-2">0</td>
-                  <td className="px-3 py-2 text-right">33.5</td>
-                  <td className="px-3 py-2 text-right">20.0</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2">Player Passing Attempts</td>
-                  <td className="px-3 py-2">Mac Jones Under 33.5</td>
-                  <td className="px-3 py-2 text-right">0.534884</td>
-                  <td className="px-3 py-2 text-right">0.523810</td>
-                  <td className="px-3 py-2 text-right">0.523810</td>
-                  <td className="px-3 py-2 text-right">0.521531</td>
-                  <td className="px-3 py-2">1</td>
-                  <td className="px-3 py-2 text-right">33.5</td>
-                  <td className="px-3 py-2 text-right">20.0</td>
-                </tr>
-                <tr>
-                  <td className="px-3 py-2">Player Passing Attempts</td>
-                  <td className="px-3 py-2">Justin Fields Over 27.5</td>
-                  <td className="px-3 py-2 text-right">0.534884</td>
-                  <td className="px-3 py-2 text-right">0.600000</td>
-                  <td className="px-3 py-2 text-right">0.534884</td>
-                  <td className="px-3 py-2 text-right">0.570815</td>
-                  <td className="px-3 py-2">1</td>
-                  <td className="px-3 py-2 text-right">27.5</td>
-                  <td className="px-3 py-2 text-right">32.0</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {renderTable(
+            ['market', 'name', 'DraftKings', 'ESPN BET', 'BetMGM', 'Pinnacle', 'grade', 'desired', 'outcome'],
+            [
+              {
+                market: 'Player Passing Attempts',
+                name: 'Mac Jones Under 33.5',
+                DraftKings: '0.534884',
+                'ESPN BET': '0.545455',
+                BetMGM: '0.545455',
+                Pinnacle: '0.547511',
+                grade: '1',
+                desired: '33.5',
+                outcome: '20.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Under 27.5',
+                DraftKings: '0.534884',
+                'ESPN BET': '0.600000',
+                BetMGM: '0.534884',
+                Pinnacle: '0.570815',
+                grade: '0',
+                desired: '27.5',
+                outcome: '32.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Under 28.5',
+                DraftKings: '0.489879',
+                'ESPN BET': '0.489879',
+                BetMGM: '0.489879',
+                Pinnacle: '0.477943',
+                grade: '0',
+                desired: '28.5',
+                outcome: '32.0'
+              }
+            ]
+          )}
 
           <div className="prose dark:prose-invert max-w-none">
             <p>
@@ -322,165 +295,293 @@ df_stacked = pd.concat([df_under, df_over], axis=0).reset_index(drop=True)
 mult_df = df_stacked[['market','name'] + [f'{x}_true_mult' for x in sportsbooks] + ['grade', 'desired', 'outcome']]
 power_df = df_stacked[['market','name'] + [f'{x}_true_power' for x in sportsbooks] + ['grade', 'desired', 'outcome']]`} />
 
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm overflow-x-auto">
-          </div>
-
-          <p className="mb-4">
-            Given that both sides of a bet are necessary to remove the vig from one side, any "Over" bet that did not have a corresponding "Under" bet had to be removed. This leaves us with our final cleaned and pre-processed dataset.
-          </p>
-
-        </section>
-
-        {/* Analysis and Results */}
-        <section className="space-y-6">
-          <h2 className="text-2xl font-semibold">Analysis and Results</h2>
-          <div className="prose dark:prose-invert max-w-none">
-            <h3 className="text-xl font-semibold">Brier Score Analysis</h3>
-            <p>
-              My first attempt in analyzing the sharpness of the 4 sportsbooks involved calculating Brier Scores, 
-              which measure the accuracy of probabilistic predictions:
-            </p>
-            <MathFormula 
-              formula="BS = \frac{1}{N} \sum_{t=1}^{N} (f_t - o_t)^2"
-              description="Where f_t is the forecasted probability and o_t is the actual outcome (0 or 1). Scores range from 0 (perfect) to 1 (worst)."
-              block={true}
-            />
-            
-            <CodeBlock code={`def calculate_brier_scores(df):
-    brier_scores = {}
-    for book in sportsbooks:
-        predicted_power = df[f'{book}_true_power']
-        actual = df['grade']
-        brier_score_power = np.mean((predicted_power - actual) ** 2)
-        predicted_mult = df[f'{book}_true_mult']
-        brier_score_mult = np.mean((predicted_mult - actual) ** 2)
-        brier_scores[book] = [brier_score_power, brier_score_mult]
-    return pd.DataFrame(brier_scores, index=['Power', 'Multiplicative'])`} />
-
-            <h3 className="text-xl font-semibold mt-6">Distance to Desired Outcome</h3>
-            <p>
-              Given the small differences in Brier Scores, I developed a new metric to gain more definitive insights. 
-              This metric, called “distance to desired outcome”, is calculated as:
-            </p>
-            <MathFormula 
-              formula="\text{Over Bets: Distance} = Outcome - Desired"
-              description="For over bets, positive distance means the outcome exceeded the line"
-              block={true}
-            />
-            <MathFormula 
-              formula="\text{Under Bets: Distance} = Desired - Outcome"
-              description="For under bets, formula is inverted to maintain consistent interpretation"
-              block={true}
-            />
-            
-            <p>
-              This metric provides a normalized measure that can be compared across different types of bets. The distance 
-              is then correlated with each sportsbook&#39;s probability estimates to evaluate accuracy.
-            </p>
-          </div>
-
-          {/* Results Table */}
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Comprehensive Sportsbook Analysis Results</h3>
-            <ResultsTable data={{
-              headers: ['Sportsbook', 'Power Brier Score', 'Mult Brier Score', 'Power Correlation', 'Mult Correlation', 'Avg Vig'],
-              rows: [
-                {
-                  'Sportsbook': 'Pinnacle',
-                  'Power Brier Score': '0.247429',
-                  'Mult Brier Score': '0.247429',
-                  'Power Correlation': '0.247429',
-                  'Mult Correlation': '0.247429',
-                  'Avg Vig': '0.247429'
-                },
-                {
-                  'Sportsbook': 'DraftKings',
-                  'Power Brier Score': '0.247429',
-                  'Mult Brier Score': '0.247429',
-                  'Power Correlation': '0.247429',
-                  'Mult Correlation': '0.247429',
-                  'Avg Vig': '0.247429'
-                },
-                {
-                  'Sportsbook': 'BetMGM',
-                  'Power Brier Score': '0.247429',
-                  'Mult Brier Score': '0.247429',
-                  'Power Correlation': '0.247429',
-                  'Mult Correlation': '0.247429',
-                  'Avg Vig': '0.247429'
-                },
-                {
-                  'Sportsbook': 'ESPN BET',
-                  'Power Brier Score': '0.247429',
-                  'Mult Brier Score': '0.247429',
-                  'Power Correlation': '0.247429',
-                  'Mult Correlation': '0.247429',
-                  'Avg Vig': '0.247429'
-                }
-              ]
-            }} />
-          </div>
-
           <div className="prose dark:prose-invert max-w-none">
             <p>
-              The analysis reveals several key findings:
+              Given that both sides of a bet are necessary to remove the vig from one side, any "Over" bet that did not have a corresponding "Under" bet had to be removed. This leaves us with our final cleaned and pre-processed dataset.
             </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                Pinnacle consistently shows the highest accuracy across both methods, with the lowest Brier scores 
-                (Power: 0.247429, Multiplicative: 0.247508) and highest correlations with actual outcomes 
-                (Power: 0.131866, Multiplicative: 0.131301).
-              </li>
-              <li>
-                The Power method consistently yields better results than the Multiplicative method across all 
-                sportsbooks, supporting our hypothesis about the presence of favorite-longshot bias.
-              </li>
-              <li>
-                Pinnacle maintains the lowest average vig (4.23%), suggesting they can achieve superior accuracy 
-                while offering better odds to bettors.
-              </li>
-            </ul>
           </div>
+
+          <h5 className="text-xl font-semibold mt-6 mb-4">Multiplicative Method Dataset:</h5>
+
+          <CodeBlock code={`print(f"Remaining Player Props: {mult_df.shape[0]}")
+mult_df.head(3)`} />
+
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+            Remaining Player Props: 12624
+          </div>
+
+          {renderTable(
+            ['market', 'name', 'DraftKings_true_mult', 'ESPN BET_true_mult', 'BetMGM_true_mult', 'Pinnacle_true_mult', 'grade', 'desired', 'outcome'],
+            [
+              {
+                market: 'Player Passing Attempts',
+                name: 'Mac Jones Under 33.5',
+                'DraftKings_true_mult': '0.500000',
+                'ESPN BET_true_mult': '0.489879',
+                'BetMGM_true_mult': '0.489879',
+                'Pinnacle_true_mult': '0.487849',
+                grade: '1',
+                desired: '33.5',
+                outcome: '20.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Under 27.5',
+                'DraftKings_true_mult': '0.500000',
+                'ESPN BET_true_mult': '0.436681',
+                'BetMGM_true_mult': '0.500000',
+                'Pinnacle_true_mult': '0.466934',
+                grade: '0',
+                desired: '27.5',
+                outcome: '32.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Under 28.5',
+                'DraftKings_true_mult': '0.489879',
+                'ESPN BET_true_mult': '0.489879',
+                'BetMGM_true_mult': '0.489879',
+                'Pinnacle_true_mult': '0.477943',
+                grade: '0',
+                desired: '28.5',
+                outcome: '32.0'
+              }
+            ]
+          )}
+          <h5 className="text-xl font-semibold mt-6 mb-4">Power Method Dataset:</h5>
+
+          <CodeBlock code={`print(f"Remaining Player Props: {power_df.shape[0]}")
+power_df.head(3)`} />
+
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+            Remaining Player Props: 12624
+          </div>
+
+          {renderTable(
+            ['market', 'name', 'DraftKings_true_power', 'ESPN BET_true_power', 'BetMGM_true_power', 'Pinnacle_true_power', 'grade', 'desired', 'outcome'],
+            [
+              {
+                market: 'Player Passing Attempts',
+                name: 'Mac Jones Under 33.5',
+                'DraftKings_true_power': '0.500000',
+                'ESPN BET_true_power': '0.488796',
+                'BetMGM_true_power': '0.488796',
+                'Pinnacle_true_power': '0.486554',
+                grade: '1',
+                desired: '33.5',
+                outcome: '20.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Under 27.5',
+                'DraftKings_true_power': '0.500000',
+                'ESPN BET_true_power': '0.430331',
+                'BetMGM_true_power': '0.500000',
+                'Pinnacle_true_power': '0.463311',
+                grade: '0',
+                desired: '27.5',
+                outcome: '32.0'
+              },
+              {
+                market: 'Player Passing Attempts',
+                name: 'Justin Fields Under 28.5',
+                'DraftKings_true_power': '0.488796',
+                'ESPN BET_true_power': '0.488796',
+                'BetMGM_true_power': '0.488796',
+                'Pinnacle_true_power': '0.475495',
+                grade: '0',
+                desired: '28.5',
+                outcome: '32.0'
+              }
+            ]
+          )}
         </section>
 
-        {/* Conclusion */}
+        {/* Analysis Section */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">Conclusion</h2>
+          <h2 className="text-2xl font-semibold">3. Analysis</h2>
+          <div className="prose dark:prose-invert max-w-none">
+            <p>The remaining 12,624 bets are visualized below:</p>
+          </div>
+
+          <CodeBlock
+            code={`import matplotlib.pyplot as plt
+market_counts = power_df['market'].value_counts()
+labels=[f'{label} - {value/sum(market_counts.values)*100:.1f}%' for label, value in market_counts.items()]
+plt.figure(figsize=(8, 9))
+plt.pie(market_counts, startangle=140, labels = labels)
+plt.title('Dataset Composition: 12,624 Prop Bets', loc='center', fontsize=18)
+plt.show()`}
+            language="python"
+          />
+
+          <div className="flex justify-center my-8">
+            <Image
+              src="/articles/sportsbook-props/images/figure_16_0.png"
+              alt="Dataset Composition: 12,624 Prop Bets"
+              width={800}
+              height={900}
+              className="rounded-lg shadow-lg"
+            />
+          </div>
+
           <div className="prose dark:prose-invert max-w-none">
             <p>
-              This analysis not only confirms Pinnacle as the sharpest among the four sportsbooks but also strongly 
-              indicates the presence of the favorite-longshot bias within our data, suggesting sportsbooks take this 
-              into account. The power method emerges as potentially superior to the industry-standard multiplicative 
-              method for adjusting odds.
-            </p>
-            <p>
-              The comparative analysis, underscored by both Brier scores and correlation coefficients, reveals the 
-              power method’s superior performance. Every value in the Power method analysis exceeds its counterpart 
-              in the multiplicative approach, highlighting its effectiveness.
-            </p>
-            <p>
-              Further research into this finding is warranted, especially considering that even a minor advantage in 
-              accuracy could significantly impact the profitability of Positive EV betting strategies, given that 
-              No-Vig Fair Odds calculations form the foundation of the EV formula.
-            </p>
-            <p>
-              The results show that Pinnacle leads with an accuracy score of 82.34%, followed by ESPN BET at 81.02%. 
-              This aligns with Pinnacle’s reputation for having the sharpest lines in the industry. Notably, 
-              Pinnacle also maintains the lowest average vig at 4.23%, suggesting they can maintain accuracy while 
-              offering better odds to bettors.
+              My first attempt in analyzing the sharpness of the 4 sportsbooks involved calculating Brier Scores. The Brier Score is the Mean Squared Error equivalent metric for evaluating forecasted probabilities against binary outcomes. It is expressed as
             </p>
           </div>
-        </section>
 
-        <div className="mt-8">
-          <Image
-            src="/articles/sportsbook-props/images/figure_16_0.png"
-            alt="Figure showing sportsbook analysis results"
-            width={800}
-            height={600}
-            className="rounded-lg shadow-lg"
+          <div className="my-4">
+            <MathFormula formula="BS = \frac{1}{N} \sum^{N}_{t=1} (f_{t} - o_{t})^2" block={true} />
+          </div>
+
+          <div className="prose dark:prose-invert max-w-none">
+            <p>
+              Brier scores are bounded by [0,1], 0 representing perfect accuracy and 1 representing perfect inaccuracy. Thus, the lesser the score, the better.
+            </p>
+          </div>
+
+          <h5 className="text-xl font-semibold mt-6 mb-4">Power Method Brier Scores:</h5>
+          <CodeBlock
+            code={`for book in sportsbooks:
+    predicted_power = power_df[book + '_true_power']
+    actual_power = power_df['grade']
+    brier_score_power = np.mean((predicted_power - actual_power) ** 2)
+    predicted_mult = mult_df[book + '_true_mult']
+    actual_mult = mult_df['grade']
+    brier_score_mult = np.mean((predicted_mult - actual_mult) ** 2)
+    brier_scores[book] = [brier_score_power, brier_score_mult]
+brier_scores_df = pd.DataFrame(brier_scores, index=['Power Method', 'Multiplicative Method']).T
+pd.DataFrame(brier_scores_df['Power Method'].sort_values(ascending = True))`}
+            language="python"
           />
-        </div>
+          {renderTable(
+            ['', 'Power Method'],
+            [
+              { '': 'Pinnacle', 'Power Method': '0.247429' },
+              { '': 'ESPN BET', 'Power Method': '0.248400' },
+              { '': 'BetMGM', 'Power Method': '0.248942' },
+              { '': 'DraftKings', 'Power Method': '0.249184' }
+            ]
+          )}
+
+          <h5 className="text-xl font-semibold mt-6 mb-4">Multiplicative Method Brier Scores:</h5>
+          <CodeBlock
+            code={`corr_mult = corr_df.loc['Correlation (Multiplicative)'].sort_values(ascending=False)
+pd.DataFrame(corr_mult)`}
+            language="python"
+          />
+
+          {renderTable(
+            ['', 'Multiplicative Method'],
+            [
+              { '': 'Pinnacle', 'Multiplicative Method': '0.247508' },
+              { '': 'ESPN BET', 'Multiplicative Method': '0.248662' },
+              { '': 'DraftKings', 'Multiplicative Method': '0.248961' },
+              { '': 'BetMGM', 'Multiplicative Method': '0.249182' }
+            ]
+          )}
+
+          <div className="prose dark:prose-invert max-w-none">
+            <p>
+              Our analysis reveals similar, yet slightly different results. Both adjustment methods identify Pinnacle as the leading bookmaker in terms of accuracy, followed by ESPN BET, with discrepancies observed in the rankings of BetMGM and DraftKings.
+            </p>
+            <p>
+              Given that the difference in magnitude between all scores is very small, it's unclear whether or not these results are statistically significant. Further analysis is still necessary to determine which book is the sharpest.
+            </p>
+            <p>
+              The similarity in scores stems from the binary nature of our target variable (0 or 1), coupled with the industry practice among sportsbooks of maintaining very similar odds to deter arbitrage betting. In order gain more definitive insights, we can define a new metric to relate the actual outcomes of bets relative to their desired outcomes.
+            </p>
+            <p>
+              Let this new metric be called distance to desired outcome and it can be calculated as follows:
+            </p>
+          </div>
+
+          <div className="my-4">
+            <MathFormula formula="Over \: Bets:  \: \: \: Distance = Outcome − Desired" block={true} />
+            <MathFormula formula="Under \: Bets: \: \: \: Distance = Desired - Outcome" block={true} />
+          </div>
+
+          <div className="prose dark:prose-invert max-w-none">
+            <p>
+              This formula is inverted to maintain a consistent target variable across all bets. This approach aims to correlate the variable with accurate true probabilities. The sportsbook demonstrating the strongest correlation with this variable is considered the most precise in its predictions.
+            </p>
+            <p>
+              The metric is valuable because it provides a medium to perform correlation analysis and ultimately determine which sportsbook is the sharpest. Since our dataset includes different player prop markets, it's imperative to first normalize this target variable according to the market. (i.e. 1 interception shouldn't be the same as 1 rushing yard)
+            </p>
+          </div>
+
+         <h5 className="text-xl font-semibold mt-6 mb-4">Power Method Correlation:</h5>
+          <CodeBlock
+            code={`# Normalizing both dataframes
+for market in power_df['market'].unique():
+    market_df = power_df[power_df['market'] == market].copy()
+    for column in ['desired', 'outcome']:
+        min_value = market_df[column].min()
+        max_value = market_df[column].max()
+        power_df.loc[market_df.index, f'{column}_norm'] = (market_df[column] - min_value) / (max_value - min_value)
+for market in mult_df['market'].unique():
+    market_df = mult_df[mult_df['market'] == market].copy()
+    for column in ['desired', 'outcome']:
+        min_value = market_df[column].min()
+        max_value = market_df[column].max()
+        mult_df.loc[market_df.index, f'{column}_norm'] = (market_df[column] - min_value) / (max_value - min_value)
+
+# Calculating distance to desired outcome for both dataframes
+power_df = power_df.copy()
+power_df['bet_type'] = power_df['name'].apply(lambda x: 'under' if 'Under' in x else 'over')
+power_df['distance'] = power_df.apply(lambda row: row['outcome_norm'] - row['desired_norm'] if row['bet_type'] == 'over' else row['desired_norm'] - row['outcome_norm'], axis=1)
+
+mult_df = mult_df.copy()
+mult_df['bet_type'] = mult_df['name'].apply(lambda x: 'under' if 'Under' in x else 'over')
+mult_df['distance'] = mult_df.apply(lambda row: row['outcome_norm'] - row['desired_norm'] if row['bet_type'] == 'over' else row['desired_norm'] - row['outcome_norm'], axis=1)
+
+# Calculating Pearson Correlation Coefficients 
+corr_df = {}
+for book in sportsbooks:
+    power_val = power_df['distance'].corr(power_df[f'{book}_true_power'])
+    mult_val = mult_df['distance'].corr(mult_df[f'{book}_true_mult'])
+    corr_df[book] = [power_val, mult_val]
+corr_df = pd.DataFrame(corr_df, index = ['Correlation (Power)', 'Correlation (Multiplicative)'])
+
+corr_power = corr_df.loc['Correlation (Power)'].sort_values(ascending = False)
+pd.DataFrame(corr_power)`}
+            language="python"
+          />          
+          {renderTable(
+            ['', 'Correlation (Power)'],
+            [
+              { '': 'Pinnacle', 'Correlation (Power)': '0.131866' },
+              { '': 'ESPN BET', 'Correlation (Power)': '0.130737' },
+              { '': 'BetMGM', 'Correlation (Power)': '0.122552' },
+              { '': 'DraftKings', 'Correlation (Power)': '0.111551' }
+            ]
+          )}
+
+
+          <h5 className="text-xl font-semibold mt-6 mb-4">Multiplicative Method Correlation:</h5>
+          <CodeBlock
+            code={`corr_mult = corr_df.loc['Correlation (Multiplicative)'].sort_values(ascending=False)
+pd.DataFrame(corr_mult)`}
+            language="python"
+          />
+          {renderTable(
+            ['', 'Correlation (Multiplicative)'],
+            [
+              { '': 'Pinnacle', 'Correlation (Multiplicative)': '0.131301' },
+              { '': 'ESPN BET', 'Correlation (Multiplicative)': '0.115561' },
+              { '': 'BetMGM', 'Correlation (Multiplicative)': '0.110739' },
+              { '': 'DraftKings', 'Correlation (Multiplicative)': '0.107577' }
+            ]
+          )}
+        </section>
+        <p className="mt-8">
+          This analysis not only confirms Pinnacle as the sharpest among the four sportsbooks but also strongly indicates the presence of the favorite-longshot bias within our data, suggesting sportsbooks take this into account. Consequently, the power method emerges as potentially superior to the industry-standard multiplicative method for adjusting odds. The comparative analysis, underscored by Pearson correlation coefficients between each sportsbook&apos;s true odds and the distance to the desired outcome metric, reveals the power method&apos;s superior performance.
+        </p>
+
+        <p className="mt-4">
+          Every value in the Power dataframe exceeds its counterpart in the multiplicative dataframe, highlighting the effectiveness of the power method. Further research into this is definitely waranted, especially considering the significant implications of even a minor advantage of the power method over the multiplicative method. This is because the computation of No-Vig Fair Odds lays the foundation for the EV formula, the performance boost from more accurate values could have a meaningful impact on the profitability of Positive EV betting as a whole.
+        </p>
       </article>
     </div>
   );
