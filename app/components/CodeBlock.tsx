@@ -10,17 +10,17 @@ interface Props {
 }
 
 const CodeBlock: React.FC<Props> = ({ code, language = 'python' }) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(true);
   
   return (
-    <div className="relative">
+    <div className={`relative min-h-[40px] ${isExpanded ? 'border border-gray-200 dark:border-gray-700' : ''} rounded-lg`}>
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="absolute top-2 right-2 px-3 py-1 text-sm bg-gray-700 text-white rounded hover:bg-gray-600"
+        className="absolute top-2 right-2 px-3 py-1 text-sm bg-gray-700 text-white rounded hover:bg-gray-600 z-10"
       >
         {isExpanded ? 'Hide Code' : 'Show Code'}
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-[800px]' : 'max-h-0'}`}>
+      <div className={`transition-all duration-300 ${isExpanded ? 'max-h-[600px] overflow-auto' : 'max-h-0 overflow-hidden'}`}>
         <SyntaxHighlighter
           language={language}
           style={tomorrow}
@@ -28,6 +28,7 @@ const CodeBlock: React.FC<Props> = ({ code, language = 'python' }) => {
             margin: 0,
             borderRadius: '0.5rem',
             padding: '1rem',
+            paddingTop: '3rem',
           }}
         >
           {code}
