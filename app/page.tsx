@@ -133,6 +133,25 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+
+              <Link href="/articles/sportsbook-props" className="block p-6 rounded-lg border border-[#00151e]/20 hover:border-[#00151e] transition-colors">
+                <div className="flex gap-4">
+                  <div className="relative w-24 h-24 flex-shrink-0">
+                    <Image
+                      src="/oddsjam.webp"
+                      alt="OddsJam"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-[#00151e] mb-2">Sportsbook Accuracy on NFL Player Props</h3>
+                    <p className="text-[#00151e]/70 mb-2">OddsJam 2024 Quant Challenge</p>
+                    <p className="text-sm text-[#00151e]/50 mb-2">Feb 2, 2024</p>
+                <span className="text-[#00151e]">Read more →</span>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
