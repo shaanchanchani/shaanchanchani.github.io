@@ -69,17 +69,50 @@ export default function Home() {
           <div>
             <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Work Experience</h2>
             <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-medium text-[#00151e]">Machine Learning Engineer</h3>
-                <p className="text-[#00151e]/70">Huddlevision • Aug 2024 - Present</p>
+              <div className="flex gap-4">
+                <div className="flex items-center">
+                  <Image
+                    src="/huddlevision.svg"
+                    alt="Huddlevision Logo"
+                    width={48}
+                    height={48}
+                    className="opacity-70"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-[#00151e]">Machine Learning Engineer</h3>
+                  <p className="text-[#00151e]/70">Huddlevision • Aug 2024 - Present</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-[#00151e]">Software Engineering Intern</h3>
-                <p className="text-[#00151e]/70">John Deere • Apr 2024 - Aug 2024</p>
+              <div className="flex gap-4">
+                <div className="flex items-center">
+                  <Image
+                    src="/john_deere.svg"
+                    alt="John Deere Logo"
+                    width={48}
+                    height={48}
+                    className="opacity-70"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-[#00151e]">Software Engineering Intern</h3>
+                  <p className="text-[#00151e]/70">John Deere • Apr 2024 - Aug 2024</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-medium text-[#00151e]">Research Assistant</h3>
-                <p className="text-[#00151e]/70">Purdue University • Aug 2023 - Jan 2024</p>
+              <div className="flex gap-4">
+                <div className="flex items-center">
+                  <Image
+                    src="/purdue.svg"
+                    alt="Purdue Logo"
+                    width={48}
+                    height={48}
+                    className="opacity-70"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-[#00151e]">Research Assistant</h3>
+                  <p className="text-[#00151e]/70">Purdue University • Aug 2023 - Jan 2024</p>
+                </div>
               </div>
             </div>
           </div>
@@ -108,6 +141,22 @@ export default function Home() {
                 <p className="text-sm text-[#00151e]/50 mb-2">Jan 6, 2025</p>
                 <span className="text-[#00151e]">View Project →</span>
               </Link>
+
+              <div className="block p-6 rounded-lg border border-[#00151e]/20">
+                <h3 className="text-lg font-medium text-[#00151e] mb-2">Field Registration System</h3>
+                <div className="relative w-full aspect-video mb-4">
+                  <Image
+                    src="/field-registration-demo.gif"
+                    alt="Field Registration System Demo"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 1920px"
+                    priority
+                  />
+                </div>
+                <p className="text-sm text-[#00151e]/50 mb-2">Nov 18, 2024</p>
+                <span className="text-[#00151e]">More Soon ...</span>
+              </div>
             </div>
           </div>
 
