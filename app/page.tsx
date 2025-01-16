@@ -115,7 +115,7 @@ export default function Home() {
           <div>
             <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Articles</h2>
             <div className="space-y-4">
-              <Link href="/articles/camo" className="block p-6 rounded-lg border border-[#00151e]/20 hover:border-[#00151e] transition-colors">
+              <Link href="https://www.kaggle.com/code/brochillington/camo-the-art-of-pre-snap-disguise" target="_blank" className="block p-6 rounded-lg border border-[#00151e]/20 hover:border-[#00151e] transition-colors">
                 <div className="flex gap-4">
                   <div className="relative w-24 h-24 flex-shrink-0">
                     <Image

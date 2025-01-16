@@ -10,18 +10,18 @@ import { renderTable } from '@/app/components/SportsbookPropsArticle/TableRender
 export default function SportsbookPropsArticle() {
   return (
     <div className="min-h-screen p-8 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <article className="max-w-6xl mx-auto space-y-8">
-        <header className="space-y-4">
+      <article className="max-w-6xl mx-auto space-y-6">
+        <header className="space-y-3">
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-bold mb-4">Sportsbook Accuracy on NFL Player Props</h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">February 2nd, 2024</p>
+            <h1 className="text-4xl font-bold mb-3">Sportsbook Accuracy on NFL Player Props</h1>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">February 2nd, 2024 | Shaan Chanchani</p>
           </div>
         </header>
         
         {/* Context */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">0. Context</h2>
-          <div className="prose dark:prose-invert max-w-none">
+        <section className="space-y-3">
+          <h2 className="text-3xl font-semibold">0. Context</h2>
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               The following report was submitted as a Jupyter notebook to OddsJam&apos;s 2024 quant challenge. Given a dataset of player prop bets, the challenge was to evaluate which sportsbook in the dataset is the sharpest.
             </p>
@@ -29,9 +29,9 @@ export default function SportsbookPropsArticle() {
         </section>
 
         {/* Abstract */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">1. Abstract</h2>
-          <div className="prose dark:prose-invert max-w-none">
+        <section className="space-y-3">
+          <h2 className="text-3xl font-semibold">1. Abstract</h2>
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               In this report I analyze a dataset of 12,624 different NFL player prop bets from four major sportsbooks 
               (DraftKings, ESPN BET, BetMGM, and Pinnacle), evaluate two different methods of adjusting implied 
@@ -47,9 +47,9 @@ export default function SportsbookPropsArticle() {
         </section>
 
         {/* Data Pre-Processing */}
-        <section className="space-y-6">
-          <h2 className="text-2xl font-semibold">2. Data Pre-Processing</h2>
-          <div className="prose dark:prose-invert max-w-none">
+        <section className="space-y-5">
+          <h2 className="text-3xl font-semibold">2. Data Pre-Processing</h2>
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               The initial step in refining the dataset involved establishing a baseline from which to filter. 
               This entailed extracting the closing lines for each sportsbook across all player prop markets 
@@ -83,13 +83,14 @@ for prop_market in player_props:
             dfs.append(closing_lines_df)
 
 combined_df = pd.concat(dfs, ignore_index=True)
-print(f"Total Player Props Collected: {combined_df.shape[0]}")`} />
+print(f"Total Player Props Collected: {combined_df.shape[0]}")`} 
+          />
 
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-base">
             Total Player Props Collected: 261525
           </div>
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               However, not every book has a recorded closing line for all of these bets. This is a challenge that is common in data cleaning. 
               In order to ensure accuracy of results, analysis was only conducted on the 4 major sportsbooks with the most recorded data. 
@@ -104,7 +105,7 @@ df = df.dropna(subset=sportsbooks, how='any')
 print(f"Remaining Player Props: {df.shape[0]}")
 df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
 
-          {<div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm">
+          {<div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-base">
             Remaining Player Props: 15456
           </div>}
 
@@ -147,13 +148,13 @@ df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
             ]
           )}
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               Next, odds from each sportsbook were converted to implied probabilities using the following formulas:
             </p>
           </div>
 
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-3">
             <div>
               <p className="mb-2">For negative odds (e.g., -110):</p>
               <MathFormula formula="\text{Implied Probability} = \frac{|Odds|}{|Odds| + 100}" block={true} />
@@ -213,7 +214,7 @@ df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
             ]
           )}
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               Next, the implied probabilities are adjusted to be true probabilities by removing the vigorish, or "vig". 
               Several adjustment methods have been developed to accomplish this, the most popular method being the 
@@ -223,11 +224,11 @@ df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
             </p>
           </div>
 
-          <div className="my-4">
+          <div className="my-3">
             <MathFormula formula="p_{i} = \frac{\pi_{i}}{\pi}" block={true} />
           </div>
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               where π is the total of the implied probabilities. The popularity of this approach can be attributed to its simplicity. 
               The major limitation of this approach is that it fails to account for the Favourite-longshot bias, a well documented phenomenon in economics and gambling 
@@ -237,11 +238,11 @@ df[['market', 'name']+ sportsbooks +['grade','desired','outcome']].head(3)`} />
             </p>
           </div>
 
-          <div className="my-4">
+          <div className="my-3">
             <MathFormula formula="p_{i} = \pi_{i}^k" block={true} />
           </div>
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               where the value of k is fine-tuned through an optimization process that ensures the sum of all adjusted probabilities, Σpi, equals 1. The exponential nature of this method allows it to apply greater adjustments to underdogs than favorites, thus accounting for the favorite-longshot bias, and ultimately giving us a better reflection of the true probability. Both methods are used to see which yields better true probability values.
             </p>
@@ -295,21 +296,18 @@ df_stacked = pd.concat([df_under, df_over], axis=0).reset_index(drop=True)
 mult_df = df_stacked[['market','name'] + [f'{x}_true_mult' for x in sportsbooks] + ['grade', 'desired', 'outcome']]
 power_df = df_stacked[['market','name'] + [f'{x}_true_power' for x in sportsbooks] + ['grade', 'desired', 'outcome']]`} />
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               Given that both sides of a bet are necessary to remove the vig from one side, any "Over" bet that did not have a corresponding "Under" bet had to be removed. This leaves us with our final cleaned and pre-processed dataset.
             </p>
           </div>
 
-          <h5 className="text-xl font-semibold mt-6 mb-4">Multiplicative Method Dataset:</h5>
-
           <CodeBlock code={`print(f"Remaining Player Props: {mult_df.shape[0]}")
 mult_df.head(3)`} />
-
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+          <h5 className="text-lg font-semibold mt-5 mb-3">Multiplicative Method Dataset:</h5>
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-base">
             Remaining Player Props: 12624
           </div>
-
           {renderTable(
             ['market', 'name', 'DraftKings_true_mult', 'ESPN BET_true_mult', 'BetMGM_true_mult', 'Pinnacle_true_mult', 'grade', 'desired', 'outcome'],
             [
@@ -348,12 +346,12 @@ mult_df.head(3)`} />
               }
             ]
           )}
-          <h5 className="text-xl font-semibold mt-6 mb-4">Power Method Dataset:</h5>
+          <CodeBlock code={`print(f"Remaining Player Props: {power_df.shape[0]}") power_df.head(3)`} />
 
-          <CodeBlock code={`print(f"Remaining Player Props: {power_df.shape[0]}")
-power_df.head(3)`} />
+          <h5 className="text-lg font-semibold mt-5 mb-3">Power Method Dataset:</h5>
 
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-sm">
+
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg font-mono text-base">
             Remaining Player Props: 12624
           </div>
 
@@ -398,9 +396,9 @@ power_df.head(3)`} />
         </section>
 
         {/* Analysis Section */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-semibold">3. Analysis</h2>
-          <div className="prose dark:prose-invert max-w-none">
+        <section className="space-y-3">
+          <h2 className="text-3xl font-semibold">3. Analysis</h2>
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>The remaining 12,624 bets are visualized below:</p>
           </div>
 
@@ -415,7 +413,7 @@ plt.show()`}
             language="python"
           />
 
-          <div className="flex justify-center my-8">
+          <div className="flex justify-center my-6">
             <Image
               src="/articles/sportsbook-props/images/figure_16_0.png"
               alt="Dataset Composition: 12,624 Prop Bets"
@@ -425,23 +423,23 @@ plt.show()`}
             />
           </div>
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               My first attempt in analyzing the sharpness of the 4 sportsbooks involved calculating Brier Scores. The Brier Score is the Mean Squared Error equivalent metric for evaluating forecasted probabilities against binary outcomes. It is expressed as
             </p>
           </div>
 
-          <div className="my-4">
+          <div className="my-3">
             <MathFormula formula="BS = \frac{1}{N} \sum^{N}_{t=1} (f_{t} - o_{t})^2" block={true} />
           </div>
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               Brier scores are bounded by [0,1], 0 representing perfect accuracy and 1 representing perfect inaccuracy. Thus, the lesser the score, the better.
             </p>
           </div>
 
-          <h5 className="text-xl font-semibold mt-6 mb-4">Power Method Brier Scores:</h5>
+          <h5 className="text-lg font-semibold mt-5 mb-3">Power Method Brier Scores:</h5>
           <CodeBlock
             code={`for book in sportsbooks:
     predicted_power = power_df[book + '_true_power']
@@ -465,7 +463,7 @@ pd.DataFrame(brier_scores_df['Power Method'].sort_values(ascending = True))`}
             ]
           )}
 
-          <h5 className="text-xl font-semibold mt-6 mb-4">Multiplicative Method Brier Scores:</h5>
+          <h5 className="text-lg font-semibold mt-5 mb-3">Multiplicative Method Brier Scores:</h5>
           <CodeBlock
             code={`corr_mult = corr_df.loc['Correlation (Multiplicative)'].sort_values(ascending=False)
 pd.DataFrame(corr_mult)`}
@@ -482,7 +480,7 @@ pd.DataFrame(corr_mult)`}
             ]
           )}
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               Our analysis reveals similar, yet slightly different results. Both adjustment methods identify Pinnacle as the leading bookmaker in terms of accuracy, followed by ESPN BET, with discrepancies observed in the rankings of BetMGM and DraftKings.
             </p>
@@ -497,12 +495,12 @@ pd.DataFrame(corr_mult)`}
             </p>
           </div>
 
-          <div className="my-4">
+          <div className="my-3">
             <MathFormula formula="Over \: Bets:  \: \: \: Distance = Outcome − Desired" block={true} />
             <MathFormula formula="Under \: Bets: \: \: \: Distance = Desired - Outcome" block={true} />
           </div>
 
-          <div className="prose dark:prose-invert max-w-none">
+          <div className="prose dark:prose-invert max-w-none text-base">
             <p>
               This formula is inverted to maintain a consistent target variable across all bets. This approach aims to correlate the variable with accurate true probabilities. The sportsbook demonstrating the strongest correlation with this variable is considered the most precise in its predictions.
             </p>
@@ -511,7 +509,7 @@ pd.DataFrame(corr_mult)`}
             </p>
           </div>
 
-         <h5 className="text-xl font-semibold mt-6 mb-4">Power Method Correlation:</h5>
+         <h5 className="text-lg font-semibold mt-5 mb-3">Power Method Correlation:</h5>
           <CodeBlock
             code={`# Normalizing both dataframes
 for market in power_df['market'].unique():
@@ -559,7 +557,7 @@ pd.DataFrame(corr_power)`}
           )}
 
 
-          <h5 className="text-xl font-semibold mt-6 mb-4">Multiplicative Method Correlation:</h5>
+          <h5 className="text-lg font-semibold mt-5 mb-3">Multiplicative Method Correlation:</h5>
           <CodeBlock
             code={`corr_mult = corr_df.loc['Correlation (Multiplicative)'].sort_values(ascending=False)
 pd.DataFrame(corr_mult)`}
@@ -575,11 +573,11 @@ pd.DataFrame(corr_mult)`}
             ]
           )}
         </section>
-        <p className="mt-8">
+        <p className="mt-6">
           This analysis not only confirms Pinnacle as the sharpest among the four sportsbooks but also strongly indicates the presence of the favorite-longshot bias within our data, suggesting sportsbooks take this into account. Consequently, the power method emerges as potentially superior to the industry-standard multiplicative method for adjusting odds. The comparative analysis, underscored by Pearson correlation coefficients between each sportsbook&apos;s true odds and the distance to the desired outcome metric, reveals the power method&apos;s superior performance.
         </p>
 
-        <p className="mt-4">
+        <p className="mt-3">
           Every value in the Power dataframe exceeds its counterpart in the multiplicative dataframe, highlighting the effectiveness of the power method. Further research into this is definitely waranted, especially considering the significant implications of even a minor advantage of the power method over the multiplicative method. This is because the computation of No-Vig Fair Odds lays the foundation for the EV formula, the performance boost from more accurate values could have a meaningful impact on the profitability of Positive EV betting as a whole.
         </p>
       </article>
