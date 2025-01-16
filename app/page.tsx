@@ -2,8 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Home() {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-6xl mx-auto space-y-12">
@@ -54,13 +57,25 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Education Section */}
           <div>
-            <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Education</h2>
+            <div className="flex items-center gap-4 mb-4">
+              <h2 className="text-xl font-semibold text-[#00151e]">Education</h2>
+            </div>
             <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-medium text-[#00151e]">Purdue University</h3>
-                <p className="text-[#00151e]/70">Bachelor&apos;s degree, Computer Engineering</p>
-                <p className="text-sm text-[#00151e]/70">Aug 2021 - May 2025</p>
-                <p className="text-sm text-[#00151e]/70">West Lafayette, Indiana</p>
+              <div className="flex gap-4 items-start">
+                <div className="relative w-12 h-12 flex-shrink-0">
+                  <Image
+                    src="/purdue_university_logo.jpeg"
+                    alt="Purdue Logo"
+                    fill
+                    className="object-contain opacity-70"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-[#00151e]">Purdue University</h3>
+                  <p className="text-[#00151e]/70">Bachelor&apos;s degree, Computer Engineering</p>
+                  <p className="text-sm text-[#00151e]/70">Aug 2021 - May 2025</p>
+                  <p className="text-sm text-[#00151e]/70">West Lafayette, Indiana</p>
+                </div>
               </div>
             </div>
           </div>
@@ -69,14 +84,14 @@ export default function Home() {
           <div>
             <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Work Experience</h2>
             <div className="space-y-6">
+              {/* Always visible experiences */}
               <div className="flex gap-4">
-                <div className="flex items-center">
+                <div className="relative w-12 h-12 flex-shrink-0">
                   <Image
                     src="/huddlevision.svg"
                     alt="Huddlevision Logo"
-                    width={48}
-                    height={48}
-                    className="opacity-70"
+                    fill
+                    className="object-contain opacity-70"
                   />
                 </div>
                 <div>
@@ -84,34 +99,96 @@ export default function Home() {
                   <p className="text-[#00151e]/70">Huddlevision • Aug 2024 - Present</p>
                 </div>
               </div>
+
               <div className="flex gap-4">
-                <div className="flex items-center">
+                <div className="relative w-12 h-12 flex-shrink-0">
                   <Image
-                    src="/john_deere.svg"
-                    alt="John Deere Logo"
-                    width={48}
-                    height={48}
-                    className="opacity-70"
+                    src="/purdue_university_logo.jpeg"
+                    alt="Purdue Logo"
+                    fill
+                    className="object-contain opacity-70"
                   />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-[#00151e]">Software Engineering Intern</h3>
-                  <p className="text-[#00151e]/70">John Deere • Apr 2024 - Aug 2024</p>
+                  <h3 className="text-lg font-medium text-[#00151e]">Purdue University</h3>
+                  <p className="text-[#00151e]/70">West Lafayette, Indiana, United States</p>
+                  <div className="mt-2 space-y-2">
+                    <div>
+                      <p className="font-medium text-[#00151e]"><span className="mr-2">▪</span>Undergraduate Researcher</p>
+                      <p className="text-[#00151e]/70">Jan 2022 - Present</p>
+                    </div>
+                    <div>
+                      <p className="font-medium text-[#00151e]"><span className="mr-2">▪</span>Teaching Assistant, ECE 57000</p>
+                      <p className="text-[#00151e]/70">Jan 2025 - Present</p>
+                    </div>
+                  </div>
                 </div>
               </div>
+
               <div className="flex gap-4">
-                <div className="flex items-center">
+                <div className="relative w-12 h-12 flex-shrink-0">
                   <Image
-                    src="/purdue.svg"
-                    alt="Purdue Logo"
-                    width={48}
-                    height={48}
-                    className="opacity-70"
+                    src="/BTB.png"
+                    alt="BTB Analytics Logo"
+                    fill
+                    className="object-contain opacity-70"
                   />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-[#00151e]">Research Assistant</h3>
-                  <p className="text-[#00151e]/70">Purdue University • Aug 2023 - Jan 2024</p>
+                  <h3 className="text-lg font-medium text-[#00151e]">Software Consultant</h3>
+                  <p className="text-[#00151e]/70">BTB Analytics • Jan 2025 - Present</p>
+                  <p className="text-sm text-[#00151e]/70">West Lafayette, Indiana, United States</p>
+                </div>
+              </div>
+
+              {/* Show More/Less Button and Expandable Content */}
+              <button 
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="flex items-center gap-2 text-[#00151e]/70 hover:text-[#00151e] transition-colors mx-auto"
+              >
+                <span>{isExpanded ? 'Show Less' : 'Show More'}</span>
+                <svg 
+                  className={`w-5 h-5 transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
+
+              <div 
+                className={`space-y-6 overflow-hidden transition-all duration-500 ease-in-out
+                  ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+              >
+                <div className="flex gap-4">
+                  <div className="relative w-12 h-12 flex-shrink-0">
+                    <Image
+                      src="/john_deere.svg"
+                      alt="John Deere Logo"
+                      fill
+                      className="object-contain opacity-70"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-[#00151e]">Software Engineering Intern</h3>
+                    <p className="text-[#00151e]/70">John Deere • Apr 2024 - Aug 2024</p>
+                    <p className="text-sm text-[#00151e]/70">Waterloo, Iowa, United States</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="relative w-12 h-12 flex-shrink-0">
+                    <Image
+                      src="/purdue_university_logo.jpeg"
+                      alt="Purdue Logo"
+                      fill
+                      className="object-contain opacity-70"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-[#00151e]">Teaching Assistant, ENGR 13200</h3>
+                    <p className="text-[#00151e]/70">Purdue University • Jan 2022 - May 2022</p>
+                  </div>
                 </div>
               </div>
             </div>
