@@ -8,7 +8,7 @@ interface SwipeableCardStackProps {
   containerWidth?: string
 }
 
-const SwipeableCardStack = ({ children, containerWidth = "w-full md:w-4/5" }: SwipeableCardStackProps) => {
+const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: SwipeableCardStackProps) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [dragOffset, setDragOffset] = useState(0)
