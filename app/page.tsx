@@ -119,7 +119,6 @@ export default function Home() {
                   <h3 className="text-sm font-medium text-[#00151e]">Purdue University</h3>
                   <p className="text-sm text-[#00151e]/70">Bachelor&apos;s degree, Computer Engineering</p>
                   <p className="text-xs text-[#00151e]/70">Aug 2021 - May 2025</p>
-                  <p className="text-xs text-[#00151e]/70">West Lafayette, Indiana</p>
                 </div>
               </div>
             </div>
@@ -140,7 +139,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="space-y-0.5">
-                  <h3 className="text-sm font-medium text-[#00151e]">Machine Learning Engineer</h3>
+                  <h3 className="text-base font-medium text-[#00151e]">Machine Learning Engineer</h3>
                   <p className="text-sm text-[#00151e]/70">Huddlevision • Aug 2024 - Present</p>
                   <p className="text-xs text-[#00151e]/70">(Remote)</p>
                 </div>
@@ -155,18 +154,16 @@ export default function Home() {
                     className="object-contain opacity-70"
                   />
                 </div>
-                <div>
-                  <h3 className="text-sm font-medium text-[#00151e]">Purdue University</h3>
-                  <p className="text-sm text-[#00151e]/70">West Lafayette, Indiana, United States</p>
-                  <div className="mt-2 space-y-2">
-                    <div>
-                      <p className="font-medium text-[#00151e]"><span className="mr-2">▪</span>Teaching Assistant, ECE 57000</p>
-                      <p className="text-[#00151e]/70">Jan 2025 - Present</p>
-                    </div>
-                    <div>
-                      <p className="font-medium text-[#00151e]"><span className="mr-2">▪</span>Undergraduate Researcher</p>
-                      <p className="text-[#00151e]/70">Jan 2022 - Present</p>
-                    </div>
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-base font-medium text-[#00151e]">Teaching Assistant, ECE 57000</p>
+                    <p className="text-sm text-[#00151e]/70">Graduate-level Intro to AI</p>
+                    <p className="text-sm text-[#00151e]/70">Jan 2025 - Present</p>
+                  </div>
+                  <div>
+                    <p className="text-base font-medium text-[#00151e]">Undergraduate Researcher</p>
+                    <p className="text-sm text-[#00151e]/70">Video Analytics for Daily Living Lab</p>
+                    <p className="text-sm text-[#00151e]/70">Jan 2022 - Present</p>
                   </div>
                 </div>
               </div>
@@ -181,7 +178,7 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium text-[#00151e]">Software Consultant</h3>
+                  <h3 className="text-base font-medium text-[#00151e]">Software Consultant</h3>
                   <p className="text-sm text-[#00151e]/70">BTB Analytics • Jan 2025 - Present</p>
                   <p className="text-xs text-[#00151e]/70">(Remote)</p>
                 </div>
@@ -216,9 +213,9 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-[#00151e]">Software Engineering Intern</h3>
+                    <h3 className="text-base font-medium text-[#00151e]">Software Engineering Intern</h3>
                     <p className="text-sm text-[#00151e]/70">John Deere • Apr 2024 - Aug 2024</p>
-                    <p className="text-xs text-[#00151e]/70">Waterloo, Iowa, United States</p>
+                    <p className="text-xs text-[#00151e]/70">Waterloo, Iowa</p>
                   </div>
                 </div>
 
@@ -231,9 +228,10 @@ export default function Home() {
                       className="object-contain opacity-70"
                     />
                   </div>
-                  <div>
-                    <h3 className="text-sm font-medium text-[#00151e]">Teaching Assistant, ENGR 13200</h3>
-                    <p className="text-sm text-[#00151e]/70">Purdue University • Jan 2022 - May 2022</p>
+                  <div className="space-y-0.5">
+                    <p className="text-base font-medium text-[#00151e]">Teaching Assistant, ENGR 13200</p>
+                    <p className="text-sm text-[#00151e]/70">Intro to MATLAB</p>
+                    <p className="text-sm text-[#00151e]/70">Jan 2022 - May 2022</p>
                   </div>
                 </div>
               </div>
@@ -253,7 +251,7 @@ export default function Home() {
                     key={index} 
                     className="block border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white w-[80vw] md:w-[600px]"
                   >
-                    <div className="flex gap-4">
+                    <div className="flex items-center gap-4">
                       <div className="relative w-24 h-24 flex-shrink-0">
                         <Image
                           src={article.image}

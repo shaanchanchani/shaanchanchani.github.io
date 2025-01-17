@@ -4,8 +4,34 @@ export default function NGSVisualizer() {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-6xl mx-auto space-y-8">
-        <h1 className="text-3xl font-bold text-[#00151e]">NGS Play Visualizer</h1>
-        
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-[#00151e]">About the Visualization</h2>
+          <p className="text-[#00151e]/70">
+            Hover over players to see detailed tracking data captured by RFID chips in their shoulder pads. 
+            Each tooltip shows:
+          </p>
+          <div className="space-y-4 text-[#00151e]/70">
+            <div>
+              <h3 className="font-medium">Basic Information</h3>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Player name, jersey number, and position</li>
+                <li>Current speed (yards/second)</li>
+                <li>Acceleration/deceleration (yards/second²)</li>
+                <li>Direction of movement (degrees)</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="font-medium">Role-Specific Data</h3>
+              <ul className="list-disc list-inside space-y-1 ml-4">
+                <li>Defenders: Coverage assignments</li>
+                <li>Receivers: Route type and pattern</li>
+                <li>Pass Rushers: Time to pressure and get-off time</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <div className="space-y-8">
           <div>
             <h3 className="text-xl font-semibold text-[#00151e] mb-2">Texans vs Chargers - Q2 10:00</h3>
@@ -47,34 +73,6 @@ export default function NGSVisualizer() {
                 className="w-full h-full"
                 title="Rams vs Buccaneers Play Animation"
               />
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold text-[#00151e]">About the Visualization</h2>
-          <p className="text-[#00151e]/70">
-            Hover over players to see detailed tracking data captured by RFID chips in their shoulder pads. 
-            Each tooltip shows:
-          </p>
-          <div className="space-y-4 text-[#00151e]/70">
-            <div>
-              <h3 className="font-medium">Basic Information</h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Player name, jersey number, and position</li>
-                <li>Current speed (yards/second)</li>
-                <li>Acceleration/deceleration (yards/second²)</li>
-                <li>Direction of movement (degrees)</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-medium">Role-Specific Data</h3>
-              <ul className="list-disc list-inside space-y-1 ml-4">
-                <li>Defenders: Coverage assignments</li>
-                <li>Receivers: Route type and pattern</li>
-                <li>Pass Rushers: Time to pressure and get-off time</li>
-              </ul>
             </div>
           </div>
         </div>

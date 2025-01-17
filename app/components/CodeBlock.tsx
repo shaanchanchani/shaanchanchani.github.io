@@ -51,7 +51,7 @@ const CodeBlock: React.FC<Props> = ({ code, language = 'python' }) => {
         )}
       </div>
       
-      <div className={`transition-all duration-300 ${isExpanded ? 'max-h-[600px] overflow-auto' : 'max-h-0 overflow-hidden'}`}>
+      <div className={`transition-all duration-300 ${isExpanded ? 'opacity-100' : 'opacity-0 h-0 overflow-hidden'}`}>
         <SyntaxHighlighter
           language={language}
           style={tomorrow}
@@ -60,6 +60,8 @@ const CodeBlock: React.FC<Props> = ({ code, language = 'python' }) => {
             borderRadius: '0.5rem',
             padding: '1rem',
             paddingTop: '3rem',
+            maxHeight: isExpanded ? 'none' : '0',
+            overflow: 'visible'
           }}
         >
           {code}
