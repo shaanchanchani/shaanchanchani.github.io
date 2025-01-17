@@ -67,6 +67,7 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     setIsDragging(true)
     startX.current = e.touches[0].clientX
     currentX.current = e.touches[0].clientX
+    e.preventDefault() // Prevent scrolling while swiping
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -74,9 +75,10 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     currentX.current = e.touches[0].clientX
     const diff = currentX.current - startX.current
     const containerWidth = containerRef.current?.offsetWidth || 0
-    const maxDrag = containerWidth * 0.5
+    const maxDrag = containerWidth * 0.4 // Reduced max drag distance for more control
     const boundedDiff = Math.max(Math.min(diff, maxDrag), -maxDrag)
     setDragOffset(boundedDiff)
+    e.preventDefault() // Prevent scrolling while swiping
   }
 
   const handleTouchEnd = () => {
@@ -84,7 +86,7 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     setIsDragging(false)
     const diff = startX.current - currentX.current
     const containerWidth = containerRef.current?.offsetWidth || 0
-    const threshold = containerWidth * 0.2
+    const threshold = containerWidth * 0.15 // Reduced threshold for easier swipes
 
     if (Math.abs(diff) > threshold) {
       navigate(diff > 0 ? 1 : -1)
@@ -109,7 +111,7 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
         >
           <div 
             className={`flex will-change-transform ${
-              isDragging ? 'transition-none' : 'transition-all duration-500 ease-out'
+              isDragging ? 'transition-none' : 'transition-all duration-300 ease-out'
             }`}
             style={{ 
               transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px))`,
@@ -122,9 +124,12 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
                 className="w-full flex-shrink-0"
                 style={{
                   transform: isDragging ?
-                    `scale(${Math.max(0.95, 1 - Math.abs(dragOffset) / (containerRef.current?.offsetWidth || 1) * 0.1)})` : 
+                    `scale(${Math.max(0.98, 1 - Math.abs(dragOffset) / (containerRef.current?.offsetWidth || 1) * 0.05)})` : 
                     'scale(1)',
-                  transition: isDragging ? 'none' : 'all 500ms ease-out'
+                  transition: isDragging ? 'none' : 'all 300ms ease-out',
+                  opacity: isDragging ? 
+                    Math.max(0.8, 1 - Math.abs(dragOffset) / (containerRef.current?.offsetWidth || 1) * 0.4) : 
+                    1
                 }}
               >
                 {child}

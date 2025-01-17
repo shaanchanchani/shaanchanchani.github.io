@@ -250,7 +250,7 @@ export default function Home() {
                 {articles.map((article, index) => (
                   <div 
                     key={index} 
-                    className="block border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white"
+                    className="block border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white w-[85vw] md:w-[600px]"
                   >
                     <div className="flex gap-4">
                       <div className="relative w-24 h-24 flex-shrink-0">
@@ -286,7 +286,7 @@ export default function Home() {
             <div className="max-w-[90vw] mx-auto">
               <SwipeableCardStack>
                 {projects.map((project, index) => (
-                  <div key={index} className="border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white w-[600px]">
+                  <div key={index} className="border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white w-[85vw] md:w-[600px]">
                     <h3 className="text-lg font-medium text-[#00151e]">{project.title}</h3>
                     <p className="text-sm text-[#00151e]/70">{project.description}</p>
                     
