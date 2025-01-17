@@ -243,105 +243,109 @@ export default function Home() {
         {/* Projects and Articles Sections */}
         <div className="space-y-8">
           {/* Articles Section */}
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Articles</h2>
-            <SwipeableCardStack>
-              {articles.map((article, index) => (
-                <div 
-                  key={index} 
-                  className="block border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white"
-                >
-                  <div className="flex gap-4">
-                    <div className="relative w-24 h-24 flex-shrink-0">
-                      <Image
-                        src={article.image}
-                        alt={article.title}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-medium text-[#00151e]">{article.title}</h3>
-                      <p className="text-sm text-[#00151e]/70">{article.description}</p>
-                      <p className="text-xs text-[#00151e]/50 mt-2">{article.date}</p>
-                      <Link 
-                        href={article.url} 
-                        target="_blank" 
-                        className="text-[#00151e] mt-2 inline-block hover:underline"
-                      >
-                        Read more →
-                      </Link>
+          <div className="space-y-4">
+            <h2 className="text-base font-semibold text-[#00151e]">Articles</h2>
+            <div className="max-w-[90vw] mx-auto">
+              <SwipeableCardStack>
+                {articles.map((article, index) => (
+                  <div 
+                    key={index} 
+                    className="block border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white"
+                  >
+                    <div className="flex gap-4">
+                      <div className="relative w-24 h-24 flex-shrink-0">
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium text-[#00151e]">{article.title}</h3>
+                        <p className="text-sm text-[#00151e]/70">{article.description}</p>
+                        <p className="text-xs text-[#00151e]/50 mt-2">{article.date}</p>
+                        <Link 
+                          href={article.url} 
+                          target="_blank" 
+                          className="text-[#00151e] mt-2 inline-block hover:underline"
+                        >
+                          Read more →
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </SwipeableCardStack>
+                ))}
+              </SwipeableCardStack>
+            </div>
           </div>
 
           {/* Projects Section */}
-          <div>
-            <h2 className="text-xl font-semibold mb-4 text-[#00151e]">Projects</h2>
-            <SwipeableCardStack>
-              {projects.map((project, index) => (
-                <div key={index} className="border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white w-[600px]">
-                  <h3 className="text-lg font-medium text-[#00151e]">{project.title}</h3>
-                  <p className="text-sm text-[#00151e]/70">{project.description}</p>
-                  
-                  {/* Preview Section */}
-                  <div className="h-[250px] bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
-                    {project.preview.type === 'iframe' ? (
-                      <div className="relative w-[500px] h-[250px]">
-                        <div className="absolute top-1/2 left-1/2 w-[1000px] h-[500px]" style={{ transform: 'translate(-50%, -50%) scale(0.5)' }}>
-                          <iframe 
+          <div className="space-y-4">
+            <h2 className="text-base font-semibold text-[#00151e]">Projects</h2>
+            <div className="max-w-[90vw] mx-auto">
+              <SwipeableCardStack>
+                {projects.map((project, index) => (
+                  <div key={index} className="border border-[#00151e]/20 rounded-lg p-4 space-y-4 bg-white w-[600px]">
+                    <h3 className="text-lg font-medium text-[#00151e]">{project.title}</h3>
+                    <p className="text-sm text-[#00151e]/70">{project.description}</p>
+                    
+                    {/* Preview Section */}
+                    <div className="h-[250px] bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
+                      {project.preview.type === 'iframe' ? (
+                        <div className="relative w-[500px] h-[250px]">
+                          <div className="absolute top-1/2 left-1/2 w-[1000px] h-[500px]" style={{ transform: 'translate(-50%, -50%) scale(0.5)' }}>
+                            <iframe 
+                              src={project.preview.src}
+                              width="100%" 
+                              height="100%" 
+                              scrolling="no"
+                              className="border-0"
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="relative w-[500px] h-[250px]">
+                          <Image
                             src={project.preview.src}
-                            width="100%" 
-                            height="100%" 
-                            scrolling="no"
-                            className="border-0"
+                            alt={project.title}
+                            fill
+                            className="object-contain"
+                            style={{ pointerEvents: 'none' }}
                           />
                         </div>
-                      </div>
+                      )}
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span key={techIndex} className="px-2 py-1 text-xs rounded-full bg-[#00151e]/10 text-[#00151e]">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="text-xs text-[#00151e]/50">{project.date}</p>
+
+                    {project.title === 'Next Gen Stats Play Visualizer' ? (
+                      <Link 
+                        href={project.demo} 
+                        target="_blank" 
+                        className="text-[#00151e] inline-block hover:underline"
+                      >
+                        Read more →
+                      </Link>
                     ) : (
-                      <div className="relative w-[500px] h-[250px]">
-                        <Image
-                          src={project.preview.src}
-                          alt={project.title}
-                          fill
-                          className="object-contain"
-                          style={{ pointerEvents: 'none' }}
-                        />
+                      <div className="flex space-x-4">
+                        <span className="text-[#00151e]/70">
+                          More soon...
+                        </span>
                       </div>
                     )}
                   </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} className="px-2 py-1 text-xs rounded-full bg-[#00151e]/10 text-[#00151e]">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-
-                  <p className="text-xs text-[#00151e]/50">{project.date}</p>
-
-                  {project.title === 'Next Gen Stats Play Visualizer' ? (
-                    <Link 
-                      href={project.demo} 
-                      target="_blank" 
-                      className="text-[#00151e] inline-block hover:underline"
-                    >
-                      Read more →
-                    </Link>
-                  ) : (
-                    <div className="flex space-x-4">
-                      <span className="text-[#00151e]/70">
-                        More soon...
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </SwipeableCardStack>
+                ))}
+              </SwipeableCardStack>
+            </div>
           </div>
         </div>
       </div>
