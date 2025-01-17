@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useRef, useCallback } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface SwipeableCardStackProps {
   children: React.ReactNode
@@ -40,12 +39,12 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     
     // Prevent swiping left on first card or right on last card
     if ((currentIndex === 0 && diff > 0) || (currentIndex === childArray.length - 1 && diff < 0)) {
-      const resistance = 0.15 // More resistance at edges
+      const resistance = 0.25 // Increased resistance at edges for smoother feel
       setDragOffset(diff * resistance)
       return
     }
     
-    const maxDrag = containerWidth * 0.5
+    const maxDrag = containerWidth * 0.6 // Increased max drag distance
     const boundedDiff = Math.max(Math.min(diff, maxDrag), -maxDrag)
     setDragOffset(boundedDiff)
   }
@@ -55,7 +54,7 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     setIsDragging(false)
     const diff = currentX.current - startX.current
     const containerWidth = containerRef.current?.offsetWidth || 0
-    const threshold = containerWidth * 0.2
+    const threshold = containerWidth * 0.10 // Reduced threshold to 10% for even easier swipes
 
     if (Math.abs(diff) > threshold) {
       navigate(diff < 0 ? 1 : -1)
@@ -86,12 +85,12 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     
     // Prevent swiping left on first card or right on last card
     if ((currentIndex === 0 && diff > 0) || (currentIndex === childArray.length - 1 && diff < 0)) {
-      const resistance = 0.15 // More resistance at edges
+      const resistance = 0.25 // Increased resistance at edges for smoother feel
       setDragOffset(diff * resistance)
       return
     }
     
-    const maxDrag = containerWidth * 0.5
+    const maxDrag = containerWidth * 0.6 // Increased max drag distance
     const boundedDiff = Math.max(Math.min(diff, maxDrag), -maxDrag)
     setDragOffset(boundedDiff)
     e.preventDefault()
@@ -102,7 +101,7 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
     setIsDragging(false)
     const diff = currentX.current - startX.current
     const containerWidth = containerRef.current?.offsetWidth || 0
-    const threshold = containerWidth * 0.2
+    const threshold = containerWidth * 0.10 // Reduced threshold to 10% for even easier swipes
 
     if (Math.abs(diff) > threshold) {
       navigate(diff < 0 ? 1 : -1)
@@ -165,28 +164,6 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
-
-        {/* Navigation Arrows (Desktop Only) */}
-        <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 w-full justify-between pointer-events-none px-2">
-          <button
-            onClick={() => navigate(-1)}
-            className={`p-1.5 rounded-full bg-black/10 hover:bg-black/20 transition-colors pointer-events-auto ${
-              currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
-            disabled={currentIndex === 0}
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </button>
-          <button
-            onClick={() => navigate(1)}
-            className={`p-1.5 rounded-full bg-black/10 hover:bg-black/20 transition-colors pointer-events-auto ${
-              currentIndex === childArray.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
-            disabled={currentIndex === childArray.length - 1}
-          >
-            <ChevronRight className="w-4 h-4" />
-          </button>
         </div>
       </div>
     </div>
