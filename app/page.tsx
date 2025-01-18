@@ -118,6 +118,7 @@ export default function Home() {
                 <div className="space-y-0.5">
                   <h3 className="text-sm font-medium text-[#00151e]">Purdue University</h3>
                   <p className="text-sm text-[#00151e]/70">Bachelor&apos;s degree, Computer Engineering</p>
+                  <p className="text-xs text-[#00151e]/70">Concentration in AI/ML</p>
                   <p className="text-xs text-[#00151e]/70">Aug 2021 - May 2025</p>
                 </div>
               </div>
@@ -258,6 +259,8 @@ export default function Home() {
                           alt={article.title}
                           fill
                           className="object-contain"
+                          draggable="false"
+                          style={{ pointerEvents: 'none', userSelect: 'none' }}
                         />
                       </div>
                       <div>
