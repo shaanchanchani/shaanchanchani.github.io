@@ -12,6 +12,7 @@
     "jupyter:serve": "jupyter lite serve"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
     "@types/katex": "^0.16.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

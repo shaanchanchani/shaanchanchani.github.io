@@ -31,7 +31,7 @@ export default function RootLayout({
           <Script 
             strategy="afterInteractive"
             data-goatcounter="https://shaanc.goatcounter.com/count"
-            src="//gc.zgo.at/count.js"
+            src="https://gc.zgo.at/count.js"
           />
         </ThemeProvider>
       </body>

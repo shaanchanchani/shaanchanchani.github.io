@@ -156,10 +156,10 @@ const SwipeableCardStack = ({ children, containerWidth = "w-11/12 md:w-4/5" }: S
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
+              className={`w-2 h-2 rounded-full transition-opacity duration-300 ${
                 index === currentIndex 
-                  ? 'bg-gray-800 scale-125' 
-                  : 'bg-gray-300 hover:bg-gray-400'
+                  ? 'bg-black/40' 
+                  : 'bg-black/10 hover:bg-black/20'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
