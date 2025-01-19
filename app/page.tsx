@@ -90,7 +90,7 @@ export default function Home() {
                 <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
               </svg>
             </Link>
-            <Link href="/resume.pdf" className="text-[#00151e]/70 hover:text-[#00151e] transition-colors">
+            <Link href="/Shaan_Chanchani_Resume.pdf" target="_blank" className="text-[#00151e]/70 hover:text-[#00151e] transition-colors">
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
               </svg>
@@ -272,6 +272,7 @@ export default function Home() {
                             href={article.url} 
                             target={article.url.startsWith('http') ? "_blank" : undefined} 
                             className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors inline-flex items-center gap-1 text-sm"
+                            draggable="false"
                           >
                             <span className="underline">Read more</span>
                             <span className="text-lg">→</span>
@@ -342,6 +343,7 @@ export default function Home() {
                             href={project.demo} 
                             target={project.demo.startsWith('http') ? "_blank" : undefined} 
                             className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors inline-flex items-center gap-1 text-sm"
+                            draggable="false"
                           >
                             <span className="underline">Read more</span>
                             <span className="text-lg">→</span>
