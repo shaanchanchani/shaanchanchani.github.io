@@ -531,7 +531,37 @@ pd.DataFrame(corr_mult)`}
             ]
           )}
 
-          {/* For the correlation sections, show tables but hide code */}
+          <div className="prose dark:prose-invert max-w-none text-base font-['SF_Pro_Text']">
+            <p>
+              The analysis revealed similar results across both methods. Pinnacle emerged as the most accurate bookmaker, followed by ESPN BET. The rankings of BetMGM and DraftKings varied between methods. However, given the small differences in scores, the statistical significance of these results is uncertain, warranting further analysis.
+            </p>
+            <p>
+              The similarity in scores can be attributed to two factors: the binary nature of our target variable (0 or 1) and the industry practice of maintaining similar odds to prevent arbitrage betting. To gain more definitive insights, I developed a new metric called "distance to desired outcome":
+            </p>
+            <p>For Over bets:</p>
+          </div>
+
+          <div className="my-3">
+            <MathFormula formula="Distance = Outcome - Desired" block={true} />
+          </div>
+
+          <div className="prose dark:prose-invert max-w-none text-base font-['SF_Pro_Text']">
+            <p>For Under bets:</p>
+          </div>
+
+          <div className="my-3">
+            <MathFormula formula="Distance = Desired - Outcome" block={true} />
+          </div>
+
+          <div className="prose dark:prose-invert max-w-none text-base font-['SF_Pro_Text']">
+            <p>
+              This inverted formula maintains a consistent target variable across all bets, allowing us to correlate the variable with true probabilities. The sportsbook showing the strongest correlation with this variable can be considered the most precise in its predictions.
+            </p>
+            <p>
+              Since our dataset includes various player prop markets, I normalized this target variable by market type (e.g., 1 interception is weighted differently than 1 rushing yard).
+            </p>
+          </div>
+
           <h2 className="text-base font-medium font-['SF_Pro_Text']">Power Method Correlations</h2>
           <CodeBlock
             code={`corr_power = corr_df.loc['Correlation (Power)'].sort_values(ascending=False)
