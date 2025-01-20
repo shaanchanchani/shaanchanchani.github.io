@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const renderTable = (headers: string[], rows: Record<string, string | number>[]) => (
-  <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-sm overflow-x-auto">
+  <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg font-mono text-xs overflow-x-auto">
     <table className="min-w-full divide-y divide-gray-300 dark:divide-gray-700">
       <thead>
         <tr>
